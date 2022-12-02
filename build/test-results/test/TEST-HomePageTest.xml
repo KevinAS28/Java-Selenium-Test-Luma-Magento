@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HomePageTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-02T13:25:31" hostname="DEVICE" time="55.691">
+<testsuite name="HomePageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-02T14:11:23" hostname="DEVICE" time="39.556">
   <properties/>
-  <testcase name="testGoToRegister()" classname="HomePageTest" time="51.788"/>
-  <testcase name="testSearchItems()" classname="HomePageTest" time="3.903"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testGoToRegister()" classname="HomePageTest" time="29.055"/>
+  <testcase name="testSearchItems()" classname="HomePageTest" time="9.747"/>
+  <testcase name="testAddToCarts()" classname="HomePageTest" time="0.754"/>
+  <system-out><![CDATA[<a class="action skip contentarea" href="#contentarea">
+<span>
+Skip to Content </span>
+</a>
+<ul class="header links"> <li class="greet welcome" data-bind="scope: 'customer'">
+<!-- ko if: customer().fullname  --><!-- /ko -->
+<!-- ko ifnot: customer().fullname  -->
+<span class="not-logged-in" data-bind="html:&quot;Default welcome msg!&quot;">Default welcome msg!</span>
+<!-- /ko -->
+</li>
+
+<li class="authorization-link" data-label="or">
+<a href="https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS9jYXRhbG9nc2VhcmNoL3Jlc3VsdC9pbmRleC8_cT1CYWc%2C/">
+Sign In </a>
+</li>
+<li><a href="https://magento.softwaretestingboard.com/customer/account/create/">Create an Account</a></li></ul>
+]]></system-out>
   <system-err><![CDATA[log4j:WARN No appenders could be found for logger (io.netty.util.internal.logging.InternalLoggerFactory).
 log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-Starting ChromeDriver 108.0.5359.71 (1e0e3868ee06e91ad636a874420e3ca3ae3756ac-refs/branch-heads/5359@{#1016}) on port 16734
+Starting ChromeDriver 108.0.5359.71 (1e0e3868ee06e91ad636a874420e3ca3ae3756ac-refs/branch-heads/5359@{#1016}) on port 2199
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-Dec 02, 2022 8:25:31 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+Dec 02, 2022 9:11:23 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 108, so returning the closest version found: 106
 ]]></system-err>
 </testsuite>
