@@ -35,6 +35,7 @@ class HomePageTest{
         homePage.goToPage();
         homePage.goToRegister();
         assertEquals(homePage.REGISTER_PAGE_URL, driver.getCurrentUrl());
+        homePage.login();
     }
 
     @Test
@@ -76,5 +77,17 @@ class HomePageTest{
     @Order(5)
     void testProceedToCheckOut(){
         homePage.proceedToCheckOut();
+    }
+
+    @Test
+    @Order(6)
+    void testShippingAddress(){
+        homePage.shippingAddress();
+    }
+
+    @Test
+    @Order(7)
+    void  testShippingMethod(){
+        homePage.shippingMethod();
     }
 }
