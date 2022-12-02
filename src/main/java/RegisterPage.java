@@ -19,7 +19,7 @@ public class RegisterPage extends CommonPage{
     }
 
 
-    public void fillSubmit(){
+    public String fillSubmit(){
         String firstNameId="firstname", lastNameId="lastname", emailId="email_address", passwordId="password", confirmPasswordId="password-confirmation";
         String firstNameValue = Util.generateRandomString(8, false, true, false);
         String lastNameValue = Util.generateRandomString(8, false, true, false);
@@ -40,6 +40,8 @@ public class RegisterPage extends CommonPage{
         passwordElement.sendKeys(passwordValue);
         confirmPasswordElement.sendKeys(passwordValue);
         submitButton.click();
+
+        return emailAddrValue + "|" + passwordValue;
     }
 
 }

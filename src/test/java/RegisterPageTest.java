@@ -23,7 +23,10 @@ class RegisterPageTest{
     @Order(2)
     public void testFillSubmit(){
         registerPage.goToPage();
-        registerPage.fillSubmit();
+        String email_password_string = registerPage.fillSubmit();
+        String[] email_password = email_password_string.split("|");
+        HomePageTest.email = email_password[0];
+        HomePageTest.password = email_password[1];
         assertEquals("https://magento.softwaretestingboard.com/customer/account/", driver.getCurrentUrl());
     }
 

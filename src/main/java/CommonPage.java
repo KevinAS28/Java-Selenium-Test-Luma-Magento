@@ -10,15 +10,19 @@ public class CommonPage {
         this.driver = driver;
     }
 
-    public void login(){
+    public void login(String email, String password){
         driver.get("https://magento.softwaretestingboard.com/customer/account/login/");
         String emailId="email", passwordId="pass";
         WebElement emailElement = driver.findElement(new By.ById(emailId));
         WebElement passwordElement = driver.findElement(new By.ById(passwordId));
         WebElement buttonElement = driver.findElement(new By.ById("send2"));
-        emailElement.sendKeys(EMAIL);
-        passwordElement.sendKeys(PASSWORD);
+        emailElement.sendKeys(email);
+        passwordElement.sendKeys(password);
         buttonElement.click();
+    }
+
+    public void login(){
+        login(EMAIL, PASSWORD);
     }
 
 }

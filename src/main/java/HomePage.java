@@ -33,26 +33,49 @@ public class HomePage extends CommonPage {
         return allProductElements;
     }
 
-    public void addToCart(WebElement productElement){
+    public String addToCart(WebElement productElement0){
+        WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement productElement4 = wait4.until(ExpectedConditions.visibilityOf(productElement0));
 
         Actions builder = new Actions(driver);
-        builder.moveToElement(productElement).perform();
+        builder.moveToElement(productElement4).perform();
+
+        WebDriverWait wait0 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement productElement1 = wait0.until(ExpectedConditions.visibilityOf(productElement0));
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement productElement = wait2.until(ExpectedConditions.elementToBeClickable(productElement1));
+
 
         try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement addCartElement = wait.until(ExpectedConditions.elementToBeClickable(new By.ByXPath("//button[@class='action tocart primary']")));
+
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement1 = wait1.until(ExpectedConditions.visibilityOf(productElement.findElement(By.tagName("button"))));
+        WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement = wait3.until(ExpectedConditions.elementToBeClickable(addCartElement1));
+
+        WebElement productLink = productElement.findElement(new By.ByClassName("product-item-link"));
+
+
         Actions actions = new Actions(driver);
         actions.moveToElement(addCartElement).click().build().perform();
+
+//        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement addCartImageElement = wait1.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(addCartElement, new By.ByClassName("product-image-photo"))).get(0);
+//        System.out.println("image element alt: " + addCartImageElement.getAttribute("alt"));
 //        addCartElement.click();
+
+        return productLink.getAttribute("innerHTML");
     }
 
     public void goToCart(){
         WebElement Cart = driver.findElement(new By.ByXPath("//a[@class='action showcart']"));
-        String cartUrl = Cart.getAttribute("href");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         try{Thread.sleep(5000);}catch(InterruptedException e){System.out.println(e);}
         Actions action = new Actions(driver);
         action.click(Cart).perform();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement cartHrefElement = wait.until(
+                ExpectedConditions.elementToBeClickable(new By.ByXPath("//a[@class='action viewcart']")));
+        driver.get(cartHrefElement.getAttribute("href"));
     }
 
     public void proceedToCheckOut(){
