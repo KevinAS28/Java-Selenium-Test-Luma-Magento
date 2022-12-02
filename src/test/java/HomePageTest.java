@@ -48,4 +48,10 @@ class HomePageTest{
     void testAddToCarts(){
 //        homePage.addToCart();
     }
+
+    @Test
+    @Order(4)
+    void testGoToCarts(){
+        homePage.goToCart();
+    }
 }

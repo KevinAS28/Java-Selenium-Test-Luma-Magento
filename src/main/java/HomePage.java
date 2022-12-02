@@ -15,6 +15,8 @@ public class HomePage extends CommonPage {
     String HOME_PAGE_URL = "https://magento.softwaretestingboard.com/";
     String REGISTER_PAGE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
 
+
+
     public HomePage(WebDriver driver){
         super(driver);
         this.driver = driver;
@@ -39,6 +41,14 @@ public class HomePage extends CommonPage {
         try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}
         WebElement addCartElement = productElement.findElement(new By.ByXPath("//button[@class='action tocart primary']"));
         addCartElement.click();
+    }
+
+    public void goToCart(){
+        WebElement Cart = driver.findElement(new By.ByClassName("action showcart"));
+        Cart.click();
+        Actions action =new Actions(driver);
+        action.click(Cart).perform();
+
     }
 
 //    public String getPageMessage(){
