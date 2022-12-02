@@ -24,22 +24,26 @@ public class HomePage extends CommonPage {
         driver.get(HOME_PAGE_URL);
     }
 
-    public void searchItems(String keyword){
+    public List<WebElement> searchItems(String keyword){
         WebElement searchElement = driver.findElement(new By.ById("search"));
         searchElement.sendKeys(keyword);
         searchElement.sendKeys(Keys.ENTER);
         WebElement productListContainer = driver.findElement(new By.ByXPath("//ol[@class='products list items product-items']"));
         List<WebElement> allProductElements = productListContainer.findElements(new By.ByXPath("//li[@class='item product product-item']"));
-
-        for (int i = 0; i < 2; i++){
-            WebElement productElement = allProductElements.get(i);
-            Actions builder = new Actions(driver);
-            builder.moveToElement(productElement).perform();
-            try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}
-            WebElement addCartElement = productElement.findElement(new By.ByXPath("//button[@class='action tocart primary']"));
-            addCartElement.click();
-        }
+        return allProductElements;
     }
+
+    public void addToCart(WebElement productElement){
+        Actions builder = new Actions(driver);
+        builder.moveToElement(productElement).perform();
+        try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}
+        WebElement addCartElement = productElement.findElement(new By.ByXPath("//button[@class='action tocart primary']"));
+        addCartElement.click();
+    }
+
+//    public String getPageMessage(){
+//
+//    }
 
     public void goToRegister(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class HomePageTest{
     public static WebDriver driver;
     public static HomePage homePage;
+
+    public List<WebElement> productToCarts;
 
     @BeforeAll
     public static void beforeAll(){
@@ -35,7 +38,14 @@ class HomePageTest{
     @Order(2)
     void testSearchItems() {
         homePage.goToPage();
-        homePage.searchItems("Bag");
-//        assertEquals(homePage.REGISTER_PAGE_URL, driver.getCurrentUrl());
+        List<WebElement> products = homePage.searchItems("Bag");
+        this.productToCarts = products;
+        assertEquals(2, products.size());
+    }
+
+    @Test
+    @Order(3)
+    void testAddToCarts(){
+//        homePage.addToCart();
     }
 }
