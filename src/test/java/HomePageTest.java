@@ -26,8 +26,16 @@ class HomePageTest{
     @Test
     @Order(1)
     void testGoToRegister() {
+        homePage.goToPage();
         homePage.goToRegister();
         assertEquals(homePage.REGISTER_PAGE_URL, driver.getCurrentUrl());
+    }
 
+    @Test
+    @Order(2)
+    void testSearchItems() {
+        homePage.goToPage();
+        homePage.searchItems("Bag");
+//        assertEquals(homePage.REGISTER_PAGE_URL, driver.getCurrentUrl());
     }
 }

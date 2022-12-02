@@ -8,20 +8,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegisterPageTest extends MainChromeTest{
+class RegisterPageTest{
+    public static WebDriver driver;
+    public static RegisterPage registerPage;
+
     @BeforeAll
     public static void beforeAll(){
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-        MainChromeTest.driver = new ChromeDriver();
+        driver = new ChromeDriver();
+        registerPage = new RegisterPage(driver);
     }
 
     @Test
-    @Order(1)
-    public void testGoogleTitle(){
-        driver.get("https://www.google.com");
-        String title = driver.getTitle();
-        System.out.println(title);
-        driver.quit();
+    @Order(2)
+    public void testFillSubmit(){
+        registerPage.goToPage();
+        registerPage.fillSubmit();
+        assertEquals("https://magento.softwaretestingboard.com/customer/account/", driver.getCurrentUrl());
     }
 
 }
