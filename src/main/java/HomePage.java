@@ -55,10 +55,6 @@ public class HomePage extends CommonPage {
         checkOut.click();
     }
 
-//    public String getPageMessage(){
-//
-//    }
-
     public String getPageMessage(){
 //        WebElement pageMessage = driver.findElement(new By.ByXPath("//div[@class='page messages' and ./**/]"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
