@@ -34,11 +34,16 @@ public class HomePage extends CommonPage {
     }
 
     public void addToCart(WebElement productElement){
+
         Actions builder = new Actions(driver);
         builder.moveToElement(productElement).perform();
-        try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}
-        WebElement addCartElement = productElement.findElement(new By.ByXPath("//button[@class='action tocart primary']"));
-        addCartElement.click();
+
+        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement = wait.until(ExpectedConditions.elementToBeClickable(new By.ByXPath("//button[@class='action tocart primary']")));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(addCartElement).click().build().perform();
+//        addCartElement.click();
     }
 
     public void goToCart(){
