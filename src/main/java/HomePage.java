@@ -42,11 +42,17 @@ public class HomePage extends CommonPage {
     }
 
     public void goToCart(){
-        WebElement Cart = driver.findElement(new By.ByClassName("action showcart"));
-        Cart.click();
-        Actions action =new Actions(driver);
+        WebElement Cart = driver.findElement(new By.ByXPath("//a[@class='action showcart']"));
+        String cartUrl = Cart.getAttribute("href");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        try{Thread.sleep(5000);}catch(InterruptedException e){System.out.println(e);}
+        Actions action = new Actions(driver);
         action.click(Cart).perform();
+    }
 
+    public void proceedToCheckOut(){
+        WebElement checkOut = driver.findElement(new By.ById("top-cart-btn-checkout"));
+        checkOut.click();
     }
 
 //    public String getPageMessage(){

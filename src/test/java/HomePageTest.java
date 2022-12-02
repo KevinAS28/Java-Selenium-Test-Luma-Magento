@@ -54,4 +54,10 @@ class HomePageTest{
     void testGoToCarts(){
         homePage.goToCart();
     }
+
+    @Test
+    @Order(5)
+    void testProceedToCheckOut(){
+        homePage.proceedToCheckOut();
+    }
 }
