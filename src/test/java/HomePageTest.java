@@ -7,8 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,9 +84,21 @@ class HomePageTest{
         homePage.goToCart();
     }
 
-//    @Test
-//    @Order(5)
-//    void testProceedToCheckOut(){
-//        homePage.proceedToCheckOut();
-//    }
+    @Test
+    @Order(5)
+    void testProceedToCheckOut(){
+        homePage.proceedToCheckOut();
+    }
+
+    @Test
+    @Order(6)
+    void testShippingAddress(){
+        homePage.shippingAddress();
+    }
+
+    @Test
+    @Order(7)
+    void  testShippingMethod(){
+        homePage.shippingMethod();
+    }
 }
