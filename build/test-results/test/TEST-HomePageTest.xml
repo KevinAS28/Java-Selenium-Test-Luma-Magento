@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HomePageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-02T14:11:23" hostname="DEVICE" time="39.556">
+<testsuite name="HomePageTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-12-02T14:57:54" hostname="IVONNE" time="17.864">
   <properties/>
-  <testcase name="testGoToRegister()" classname="HomePageTest" time="29.055"/>
-  <testcase name="testSearchItems()" classname="HomePageTest" time="9.747"/>
-  <testcase name="testAddToCarts()" classname="HomePageTest" time="0.754"/>
+  <testcase name="testGoToRegister()" classname="HomePageTest" time="6.367"/>
+  <testcase name="testSearchItems()" classname="HomePageTest" time="2.814"/>
+  <testcase name="testAddToCarts()" classname="HomePageTest" time="0.746"/>
+  <testcase name="testGoToCarts()" classname="HomePageTest" time="5.171"/>
+  <testcase name="testProceedToCheckOut()" classname="HomePageTest" time="2.765"/>
   <system-out><![CDATA[<a class="action skip contentarea" href="#contentarea">
 <span>
 Skip to Content </span>
@@ -24,11 +26,11 @@ Sign In </a>
   <system-err><![CDATA[log4j:WARN No appenders could be found for logger (io.netty.util.internal.logging.InternalLoggerFactory).
 log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-Starting ChromeDriver 108.0.5359.71 (1e0e3868ee06e91ad636a874420e3ca3ae3756ac-refs/branch-heads/5359@{#1016}) on port 2199
+Starting ChromeDriver 108.0.5359.71 (1e0e3868ee06e91ad636a874420e3ca3ae3756ac-refs/branch-heads/5359@{#1016}) on port 42220
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-Dec 02, 2022 9:11:23 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+Dec 02, 2022 9:57:54 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 108, so returning the closest version found: 106
 ]]></system-err>
 </testsuite>
