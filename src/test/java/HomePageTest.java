@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.regex.Matcher;
@@ -47,10 +48,21 @@ class HomePageTest{
     @Test
     @Order(3)
     void testAddToCarts(){
-        homePage.addToCart(this.productToCarts.get(0));
-        String message = homePage.getPageMessage();
-        System.out.println("page message: " + message);
-        boolean match = Pattern.compile("You added(.*)shopping cart(.*)", Pattern.CASE_INSENSITIVE).matcher(message).find();
-        assertTrue(match);
+        for (int i = 0; i<4;i++){
+            System.out.println("testAddToCarts: product "  + i);
+            WebElement productElement = this.productToCarts.get(i);
+            homePage.driver.findElement(new By.ByXPath("//div[@class='search results']")).click();
+            homePage.addToCart(productElement);
+            String message = homePage.getPageMessage();
+            System.out.println("page message: " + message);
+            boolean match = Pattern.compile("You added(.*)shopping cart(.*)", Pattern.CASE_INSENSITIVE).matcher(message).find();
+            assertTrue(match);
+//            WebElement pageHeaderElement = homePage.driver.findElement(new By.ByClassName("page-header"));
+//            Actions builder = new Actions(homePage.driver);
+//            builder.moveToElement(pageHeaderElement).perform();
+//            try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
+//            "search results"
+        }
+
     }
 }
