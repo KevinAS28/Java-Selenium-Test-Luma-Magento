@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MainChromeTest {
+    // https://groups.google.com/g/webdriver/c/m7ynStLbPM4
     public static WebDriver driver;
 
     @BeforeAll
@@ -21,7 +22,6 @@ class MainChromeTest {
 
     @BeforeEach
     void setUp() {
-        driver.get("http://google.com");
     }
 
     @AfterEach
@@ -34,14 +34,7 @@ class MainChromeTest {
 
     }
 
-//    @Test
-//    @Order(1)
-//    public void testGoogleTitle(){
-//        driver.get("https://www.google.com");
-//        String title = driver.getTitle();
-//        System.out.println(title);
-//        driver.quit();
-//    }
+
 
 
 
