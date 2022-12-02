@@ -60,10 +60,11 @@ public class HomePage extends CommonPage {
 //    }
 
     public String getPageMessage(){
-        WebElement pageMessage = driver.findElement(new By.ByXPath("//div[@class='page messages']"));
+//        WebElement pageMessage = driver.findElement(new By.ByXPath("//div[@class='page messages' and ./**/]"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement pageMessageLink = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(new By.ByTagName("a")));
+                ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//a[text()[contains(.,'shopping cart')]]")));
+
         return pageMessageLink.findElement(By.xpath("./..")).getAttribute("innerHTML");
     }
 

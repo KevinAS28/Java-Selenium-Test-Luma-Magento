@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.time.Duration;
 import java.util.List;
@@ -46,7 +48,10 @@ class HomePageTest{
     @Order(3)
     void testAddToCarts(){
         homePage.addToCart(this.productToCarts.get(0));
-        System.out.println(homePage.getPageMessage());
+        String message = homePage.getPageMessage();
+        System.out.println("page message: " + message);
+        boolean match = Pattern.compile("You added(.*)shopping cart(.*)", Pattern.CASE_INSENSITIVE).matcher(message).find();
+        assertTrue(match);
     }
 
     @Test
