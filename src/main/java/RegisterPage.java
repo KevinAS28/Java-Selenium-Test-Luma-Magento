@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterPage extends CommonPage{
-    WebDriver driver;
-    String REGISTER_PAGE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
+    public final String REGISTER_PAGE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
 
     public RegisterPage(WebDriver driver){
         super(driver);
@@ -16,6 +15,7 @@ public class RegisterPage extends CommonPage{
 
     public void goToPage(){
         driver.get(REGISTER_PAGE_URL);
+
     }
 
 

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,8 +26,6 @@ class HomePageTest{
     public static List<String> productsInCart = new ArrayList<>();
 
 
-    public static String email = "1!aA0Wpj47yx@gmail.com", password = "1!aAPbC4sWK5";
-
     @BeforeAll
     public static void beforeAll(){
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
@@ -35,17 +35,15 @@ class HomePageTest{
 
     @Test
     @Order(1)
-    void testGoToRegister() {
+    void testGoToPage(){
         homePage.goToPage();
-        homePage.goToRegister();
-        assertEquals(homePage.REGISTER_PAGE_URL, driver.getCurrentUrl());
-        homePage.login(HomePageTest.email, HomePageTest.password);
+        assertEquals(homePage.HOME_PAGE_URL, driver.getCurrentUrl());
     }
 
     @Test
     @Order(2)
     void testSearchItems() {
-        homePage.goToPage();
+
         HomePageTest.productToCarts = homePage.searchItems("Bag");
         assertNotEquals(0, productToCarts.size());
     }
@@ -75,6 +73,8 @@ class HomePageTest{
 //            try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
 //            "search results"
         }
+        System.out.println("Products in cart: " + productsInCart);
+        CartPage.wantedProductNames = productsInCart.subList(0, 2);
         try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
     }
 
@@ -82,23 +82,25 @@ class HomePageTest{
     @Order(4)
     void testGoToCarts(){
         homePage.goToCart();
+        assertEquals("https://magento.softwaretestingboard.com/checkout/cart/", driver.getCurrentUrl());
     }
 
-    @Test
-    @Order(5)
-    void testProceedToCheckOut(){
-        homePage.proceedToCheckOut();
-    }
+//    @Test
+//    @Order(5)
+//    void testProceedToCheckOut(){
+//        homePage.proceedToCheckOut();
+//    }
 
-    @Test
-    @Order(6)
-    void testShippingAddress(){
-        homePage.shippingAddress();
-    }
+//    @Test
+//    @Order(6)
+//    void go(){
+//
+//    }
 
-    @Test
-    @Order(7)
-    void  testShippingMethod(){
-        homePage.shippingMethod();
-    }
+
+//    @Test
+//    @Order(7)
+//    void  testShippingMethod(){
+//        homePage.shippingMethod();
+//    }
 }

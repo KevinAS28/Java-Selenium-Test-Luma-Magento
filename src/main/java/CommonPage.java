@@ -3,8 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CommonPage {
-    public String EMAIL = "1!aACawIYYHj@gmail.com", PASSWORD = "1!aAYPOQqcqe";
+    public static String EMAIL = "1!aAXaOch1W5@gmail.com", PASSWORD = "1!aA4ONfjJYU";
     public WebDriver driver;
+    public static boolean requireLoginEachPage = true;
 
     public CommonPage(WebDriver driver){
         this.driver = driver;

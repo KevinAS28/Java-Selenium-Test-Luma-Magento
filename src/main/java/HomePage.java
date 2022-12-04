@@ -11,9 +11,7 @@ import java.util.List;
 
 public class HomePage extends CommonPage {
 
-
-    String HOME_PAGE_URL = "https://magento.softwaretestingboard.com/";
-    String REGISTER_PAGE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
+    public final String HOME_PAGE_URL = "https://magento.softwaretestingboard.com/";
 
     public HomePage(WebDriver driver){
         super(driver);
@@ -22,6 +20,11 @@ public class HomePage extends CommonPage {
 
     public void goToPage(){
         driver.get(HOME_PAGE_URL);
+        if (CommonPage.requireLoginEachPage){
+            login(EMAIL, PASSWORD);
+        }
+
+        System.out.println("home search");
     }
 
     public List<WebElement> searchItems(String keyword){
@@ -46,7 +49,7 @@ public class HomePage extends CommonPage {
         WebElement productElement = wait2.until(ExpectedConditions.elementToBeClickable(productElement1));
 
 
-        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
+//        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
 
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement addCartElement1 = wait1.until(ExpectedConditions.visibilityOf(productElement.findElement(By.tagName("button"))));
@@ -68,8 +71,9 @@ public class HomePage extends CommonPage {
     }
 
     public void goToCart(){
-        WebElement Cart = driver.findElement(new By.ByXPath("//a[@class='action showcart']"));
-        try{Thread.sleep(5000);}catch(InterruptedException e){System.out.println(e);}
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement Cart = wait1.until(ExpectedConditions.elementToBeClickable(new By.ByXPath("//a[@class='action showcart']")));
+//        try{Thread.sleep(5000);}catch(InterruptedException e){System.out.println(e);}
         Actions action = new Actions(driver);
         action.click(Cart).perform();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -78,64 +82,14 @@ public class HomePage extends CommonPage {
         driver.get(cartHrefElement.getAttribute("href"));
     }
 
+
     public void proceedToCheckOut(){
-        WebElement checkOut = driver.findElement(new By.ById("top-cart-btn-checkout"));
-        checkOut.click();
-    }
-
-    public void shippingAddress(){
-        String company = "company", addressId1 = "street[0]", addressId2 = "street[1]", addressId3 = "street[2]", city = "city", state = "region_id", postalCode = "postcode", country = "country_id", phoneNumber = "telephone";
-        String companyValue = Util.generateRandomString(10, false, true,false);
-        String Addr1Value = "1!aA" + Util.generateRandomString(20);
-        String Addr2Value = "1!aA" + Util.generateRandomString(20);
-        String Addr3Value = "1!aA" + Util.generateRandomString(20);
-        String cityValue = Util.generateRandomString(10, false, true,false);
-        String stateValue = Util.generateRandomString(10, false, true,false);
-        String postalCodeValue = Util.generateRandomString(5, false, true,false);
-        String countryValue = Util.generateRandomString(10, false, true,false);
-        String phoneNumberValue = Util.generateRandomString(12, true, false,false);
-        System.out.println("Values: " + companyValue + " | " + Addr1Value + " | " + Addr2Value + " | " + Addr3Value + " | " + cityValue + " | " + stateValue + " | " + postalCodeValue + " | " + countryValue + " | " + phoneNumberValue);
-
-        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement shipAddWait = wait.until(ExpectedConditions.elementToBeClickable(new By.ByName("company")));
-        System.out.println(shipAddWait.getText());
-
-        WebElement companyElement = driver.findElement(new By.ByName(company));
-        WebElement addressId1Element = driver.findElement(new By.ByName(addressId1));
-        WebElement addressId2Element = driver.findElement(new By.ByName(addressId2));
-        WebElement addressId3Element = driver.findElement(new By.ByName(addressId3));
-        WebElement cityElement = driver.findElement(new By.ByName(city));
-        WebElement stateElement = driver.findElement(new By.ByName(state));
-        WebElement postalCodeElement = driver.findElement(new By.ByName(postalCode));
-        WebElement countryElement = driver.findElement(new By.ByName(country));
-        WebElement phoneNumberElement = driver.findElement(new By.ByName(phoneNumber));
-
-
-        companyElement.sendKeys(companyValue);
-        addressId1Element.sendKeys(Addr1Value);
-        addressId2Element.sendKeys(Addr2Value);
-        addressId3Element.sendKeys(Addr3Value);
-        cityElement.sendKeys(cityValue);
-        stateElement.sendKeys(stateValue);
-        postalCodeElement.sendKeys(postalCodeValue);
-        countryElement.sendKeys(countryValue);
-        phoneNumberElement.sendKeys(phoneNumberValue);
-    }
-
-    public void shippingMethod(){
-        String shippingMethod1 = "ko_unique_1", shippingMethod2 = "ko_unique_2";
-        String shippingMethod1Value = "1";
-        String shippingMethod2Value = "2";
-        System.out.println("Values: " + shippingMethod1Value + " | " + shippingMethod2Value );
-
-        WebElement shippingMethod1Element = driver.findElement(new By.ByName(shippingMethod1));
-        WebElement shippingMethod2Element = driver.findElement(new By.ByName(shippingMethod2));
-        WebElement nextButton = driver.findElement(new By.ByXPath("//button[@class = 'button action continue primary']"));
-
-        shippingMethod1Element.sendKeys(shippingMethod1Value);
-        shippingMethod2Element.sendKeys(shippingMethod2Value);
-        nextButton.click();
+        WebDriverWait wait0 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement checkOutElement0 = wait0.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//button[contains(@data-role,'proceed-to-checkout')]")));
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement checkOutElement = wait1.until(ExpectedConditions.visibilityOf(checkOutElement0));
+        checkOutElement.click();
+        System.out.println("URL: " + driver.getCurrentUrl());
     }
 
     public String getPageMessage(){
