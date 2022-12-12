@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends CommonPage {
@@ -68,6 +69,25 @@ public class HomePage extends CommonPage {
 //        addCartElement.click();
 
         return productLink.getAttribute("innerHTML");
+    }
+
+    public void addSizeAndColor(){
+        driver.get("https://magento.softwaretestingboard.com/men/tops-men/jackets-men.html");
+        List<String> listData = new ArrayList<>();
+        WebElement olItem = driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol"));
+        List<WebElement> listLi = olItem.findElements(By.tagName("li"));
+        List<WebElement> listSize = listLi.get(0).findElements(By.className("swatch-option"));
+        listSize.get(0).click();
+        List<WebElement> listColor = listLi.get(0).findElements(By.cssSelector(".swatch-option.color"));
+        listColor.get(1).click();
+
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement1 = wait1.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("tocart"))));
+        WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement = wait3.until(ExpectedConditions.elementToBeClickable(addCartElement1));
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(addCartElement).click().build().perform();
     }
 
     public void goToCart(){

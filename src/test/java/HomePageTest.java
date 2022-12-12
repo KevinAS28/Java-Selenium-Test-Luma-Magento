@@ -80,6 +80,17 @@ class HomePageTest{
 
     @Test
     @Order(4)
+    void testAddSizeAndColor(){
+        homePage.addSizeAndColor();
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(new By.ByClassName("messages")));
+        String message = homePage.getPageMessage();
+        boolean match = Pattern.compile("You added(.*)shopping cart(.*)", Pattern.CASE_INSENSITIVE).matcher(message).find();
+        assertTrue(match);
+    }
+
+    @Test
+    @Order(5)
     void testGoToCarts(){
         homePage.goToCart();
         assertEquals("https://magento.softwaretestingboard.com/checkout/cart/", driver.getCurrentUrl());
