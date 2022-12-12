@@ -23,7 +23,7 @@ public class HomePage extends CommonPage {
         if (CommonPage.requireLoginEachPage){
             login(EMAIL, PASSWORD);
         }
-
+        driver.get(HOME_PAGE_URL);
         System.out.println("home search");
     }
 
