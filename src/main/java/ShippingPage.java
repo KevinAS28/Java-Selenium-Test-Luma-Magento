@@ -11,6 +11,8 @@ import java.time.Duration;
 public class ShippingPage extends CommonPage{
     public final String SHIPPING_PAGE_URL = "https://magento.softwaretestingboard.com/checkout/#shipping";
 
+    public static String shipping_address_checkout;
+
     public ShippingPage(WebDriver driver) {
         super(driver);
     }
@@ -38,8 +40,9 @@ public class ShippingPage extends CommonPage{
         String countryValue = "Country " + Util.generateRandomString(10, false, true,false);
         String phoneNumberValue = Util.generateRandomString(12, true, false,false);
         System.out.println("Values: " + companyValue + " | " + Addr1Value + " | " + Addr2Value + " | " + Addr3Value + " | " + cityValue + " | " + stateValue + " | " + postalCodeValue + " | " + countryValue + " | " + phoneNumberValue);
+        shipping_address_checkout = Addr1Value = ", "+ Addr2Value + ", " + Addr3Value + ", " + cityValue + ", " + postalCodeValue;
 
-        
+
         WebElement companyElement = Util.waitElement(driver, new By.ByName(company));
         companyElement.sendKeys(companyValue);
 
@@ -93,6 +96,16 @@ public class ShippingPage extends CommonPage{
         try{
             WebElement nextButtonElement0 = Util.waitElement(driver, new By.ByXPath(String.format("//button[@class='button action continue primary']")));
             nextButtonElement0.click();
+        } catch (Exception e){}
+    }
+
+    public void placeOrderButton(){
+        try{
+            WebElement nextButtonElement0 = Util.waitElement(driver, new By.ByXPath(String.format("//*[@id=\"checkout-payment-method-load\"]/div/div/div[2]/div[2]/div[4]/div/button")));
+            nextButtonElement0.click();
+
+            WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait2.until(ExpectedConditions.visibilityOfElementLocated(new By.ByClassName("checkout-success")));
         } catch (Exception e){}
     }
 
