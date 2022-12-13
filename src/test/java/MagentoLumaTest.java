@@ -11,6 +11,7 @@ public class MagentoLumaTest {
     CartPageTest cartPageTest = new CartPageTest();
     ShippingPageTest shippingPageTest = new ShippingPageTest();
 
+    WishListPageTest wishListPageTest = new WishListPageTest();
 
     @BeforeAll
     public static void beforeAll(){
@@ -38,8 +39,19 @@ public class MagentoLumaTest {
         homePageTest.testSearchItems();
         System.out.println("home add");
         homePageTest.testAddToCarts();
+        System.out.println("home add size and colour");
+        homePageTest.testAddSizeAndColor();
         System.out.println("home go cart");
         homePageTest.testGoToCarts();
+
+        wishListPageTest.wishListPage = new WishListPage(driver);
+        wishListPageTest.driver = driver;
+        System.out.println("Wishlist go to page");
+        wishListPageTest.testGoToPage();
+        System.out.println("Wishlist add");
+        wishListPageTest.testAddToWishList();
+        System.out.println("Wishlist remove");
+        wishListPageTest.testRemoveWishList();
 
         cartPageTest.cartPage = new CartPage(driver);
         cartPageTest.driver = driver;
@@ -59,6 +71,10 @@ public class MagentoLumaTest {
         shippingPageTest.testGoToPage();
         System.out.println("shipping address");
         shippingPageTest.testShippingAddress();
+        System.out.println("shipping address appropriate?");
+        shippingPageTest.testAddressAppropriate();
+        System.out.println("shipping place order button");
+        shippingPageTest.testPlaceOrderButton();
         try{Thread.sleep(5000);}catch(InterruptedException e1){System.out.println(e1);}
     }
     
