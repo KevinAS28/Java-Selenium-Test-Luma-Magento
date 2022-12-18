@@ -71,6 +71,28 @@ public class HomePage extends CommonPage {
         return productLink.getAttribute("innerHTML");
     }
 
+    public void addToCartFromMenuNavbar(){
+        driver.get("https://magento.softwaretestingboard.com/");
+        Actions actions1 = new Actions(driver);
+        WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement menuGear = wait4.until(ExpectedConditions.visibilityOf(driver.findElement(new By.ByXPath("/html/body/div[2]/div[1]/div/div[2]/nav/ul/li[4]"))));
+        actions1.moveToElement(menuGear).perform();
+        actions1.moveToElement(driver.findElement(new By.ByXPath("/html/body/div[2]/div[1]/div/div[2]/nav/ul/li[4]/ul/li[1]"))).click().build().perform();
+
+        WebElement waitOlItem = wait4.until(ExpectedConditions.visibilityOf(driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol"))));
+        WebElement olItem = driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol"));
+        List<WebElement> listLi = olItem.findElements(By.tagName("li"));
+
+        actions1.moveToElement(listLi.get(0)).perform();
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement1 = wait1.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("tocart"))));
+        WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addCartElement = wait3.until(ExpectedConditions.elementToBeClickable(addCartElement1));
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(addCartElement).click().build().perform();
+    }
+
     public void addSizeAndColor(){
         driver.get("https://magento.softwaretestingboard.com/men/tops-men/jackets-men.html");
         List<String> listData = new ArrayList<>();

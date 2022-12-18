@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -55,6 +56,15 @@ class ShippingPageTest {
         shippingPage.placeOrderButton();
         Util.waitElement(driver, new By.ByXPath("//*[@id=\"maincontent\"]/div[1]/h1/span"));
         assertEquals("Thank you for your purchase!", driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[1]/h1/span")).getText());
+    }
+
+    @Test
+    @Order(5)
+    void testGetOrderNumber(){
+        shippingPage.getOrderNumber();
+        driver.get("https://magento.softwaretestingboard.com/customer/account/");
+        WebElement historyOrderNumber = driver.findElement(new By.ByXPath("//*[@id=\"my-orders-table\"]/tbody/tr/td[1]"));
+        assertEquals(shippingPage.order_number, historyOrderNumber.getText());
     }
 
 //    @Test

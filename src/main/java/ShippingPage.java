@@ -12,6 +12,7 @@ public class ShippingPage extends CommonPage{
     public final String SHIPPING_PAGE_URL = "https://magento.softwaretestingboard.com/checkout/#shipping";
 
     public static String shipping_address_checkout;
+    public static String order_number;
 
     public ShippingPage(WebDriver driver) {
         super(driver);
@@ -106,6 +107,15 @@ public class ShippingPage extends CommonPage{
 
             WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait2.until(ExpectedConditions.visibilityOfElementLocated(new By.ByClassName("checkout-success")));
+        } catch (Exception e){}
+    }
+
+    public void getOrderNumber(){
+        try{
+            WebElement orderNumberElement = Util.waitElement(driver, new By.ByXPath(String.format("//*[@id=\"maincontent\"]/div[3]/div/div[2]/p[1]/a/strong")));
+            String orderNumber = orderNumberElement.getText();
+            order_number = orderNumber;
+            System.out.println("Order Number: " + orderNumber);
         } catch (Exception e){}
     }
 
