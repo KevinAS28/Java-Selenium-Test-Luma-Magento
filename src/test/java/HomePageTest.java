@@ -21,10 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class HomePageTest{
     public static WebDriver driver;
     public static HomePage homePage;
-
     public static List<WebElement> productToCarts;
     public static List<String> productsInCart = new ArrayList<>();
-
 
     @BeforeAll
     public static void beforeAll(){
@@ -67,11 +65,6 @@ class HomePageTest{
             boolean match = Pattern.compile("You added(.*)shopping cart(.*)", Pattern.CASE_INSENSITIVE).matcher(message).find();
             assertTrue(match);
             i++;
-//            WebElement pageHeaderElement = homePage.driver.findElement(new By.ByClassName("page-header"));
-//            Actions builder = new Actions(homePage.driver);
-//            builder.moveToElement(pageHeaderElement).perform();
-//            try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
-//            "search results"
         }
         System.out.println("Products in cart: " + productsInCart);
         CartPage.wantedProductNames = productsInCart.subList(0, 2);

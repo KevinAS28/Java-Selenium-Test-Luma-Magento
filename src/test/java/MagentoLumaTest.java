@@ -5,12 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MagentoLumaTest {
     public static WebDriver driver;
-
     RegisterPageTest registerPageTest = new RegisterPageTest();
     HomePageTest homePageTest = new HomePageTest();
     CartPageTest cartPageTest = new CartPageTest();
     ShippingPageTest shippingPageTest = new ShippingPageTest();
-
     WishListPageTest wishListPageTest = new WishListPageTest();
 
     @BeforeAll

@@ -92,7 +92,6 @@ public class HomePage extends CommonPage {
         Actions actions = new Actions(driver);
         actions.moveToElement(addCartElement).click().build().perform();
     }
-
     public void addSizeAndColor(){
         driver.get("https://magento.softwaretestingboard.com/men/tops-men/jackets-men.html");
         List<String> listData = new ArrayList<>();
@@ -123,8 +122,6 @@ public class HomePage extends CommonPage {
                 ExpectedConditions.elementToBeClickable(new By.ByXPath("//a[@class='action viewcart']")));
         driver.get(cartHrefElement.getAttribute("href"));
     }
-
-
     public void proceedToCheckOut(){
         WebDriverWait wait0 = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement checkOutElement0 = wait0.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//button[contains(@data-role,'proceed-to-checkout')]")));

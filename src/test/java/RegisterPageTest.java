@@ -9,8 +9,6 @@ class RegisterPageTest{
     public static WebDriver driver;
     public static RegisterPage registerPage;
 
-
-
     @BeforeAll
     public static void beforeAll(){
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
@@ -28,7 +26,6 @@ class RegisterPageTest{
     void testGoToPage() {
         System.out.println("testGoToPage(): " + driver.getCurrentUrl());
         registerPage.goToPage();
-//        assertTrue(registerPage.REGISTER_PAGE_URL.startsWith(driver.getCurrentUrl()));
         assertEquals(registerPage.REGISTER_PAGE_URL, driver.getCurrentUrl());
     }
 

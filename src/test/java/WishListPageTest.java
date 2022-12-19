@@ -14,9 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WishListPageTest {
     public static WebDriver driver;
     public static WishListPage wishListPage;
-
     public static List<WebElement> productToWishList;
-
     public static List<String> productsInWishList = new ArrayList<>();
 
     @BeforeAll
