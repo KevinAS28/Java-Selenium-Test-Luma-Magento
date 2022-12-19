@@ -75,9 +75,9 @@ public class HomePage extends CommonPage {
         driver.get("https://magento.softwaretestingboard.com/");
         Actions actions1 = new Actions(driver);
         WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement menuGear = wait4.until(ExpectedConditions.visibilityOf(driver.findElement(new By.ByXPath("/html/body/div[2]/div[1]/div/div[2]/nav/ul/li[4]"))));
+        WebElement menuGear = wait4.until(ExpectedConditions.visibilityOf(driver.findElement(new By.ByClassName("nav-4"))));
         actions1.moveToElement(menuGear).perform();
-        actions1.moveToElement(driver.findElement(new By.ByXPath("/html/body/div[2]/div[1]/div/div[2]/nav/ul/li[4]/ul/li[1]"))).click().build().perform();
+        actions1.moveToElement(driver.findElement(new By.ByClassName("nav-4-1"))).click().build().perform();
 
         WebElement waitOlItem = wait4.until(ExpectedConditions.visibilityOf(driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol"))));
         WebElement olItem = driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol"));
