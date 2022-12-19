@@ -17,6 +17,7 @@ public class MagentoLumaTest {
     public static void beforeAll(){
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     @Test
@@ -41,6 +42,8 @@ public class MagentoLumaTest {
         homePageTest.testAddToCarts();
         System.out.println("home add size and colour");
         homePageTest.testAddSizeAndColor();
+        System.out.println("home add to cart from menu navbar");
+        homePageTest.testAddToCartFromMenuNavbar();
         System.out.println("home go cart");
         homePageTest.testGoToCarts();
 
@@ -75,6 +78,8 @@ public class MagentoLumaTest {
         shippingPageTest.testAddressAppropriate();
         System.out.println("shipping place order button");
         shippingPageTest.testPlaceOrderButton();
+        System.out.println("shipping order number");
+        shippingPageTest.testGetOrderNumber();
         try{Thread.sleep(5000);}catch(InterruptedException e1){System.out.println(e1);}
     }
     

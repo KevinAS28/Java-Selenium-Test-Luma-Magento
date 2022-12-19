@@ -53,6 +53,8 @@ class ShippingPageTest {
     @Test
     @Order(4)
     void testPlaceOrderButton(){
+        shippingPage.getOrderItem();
+        System.out.println(shippingPage.item_list_before_checkout);
         shippingPage.placeOrderButton();
         Util.waitElement(driver, new By.ByXPath("//*[@id=\"maincontent\"]/div[1]/h1/span"));
         assertEquals("Thank you for your purchase!", driver.findElement(new By.ByXPath("//*[@id=\"maincontent\"]/div[1]/h1/span")).getText());
@@ -62,9 +64,8 @@ class ShippingPageTest {
     @Order(5)
     void testGetOrderNumber(){
         shippingPage.getOrderNumber();
-        driver.get("https://magento.softwaretestingboard.com/customer/account/");
-        WebElement historyOrderNumber = driver.findElement(new By.ByXPath("//*[@id=\"my-orders-table\"]/tbody/tr/td[1]"));
-        assertEquals(shippingPage.order_number, historyOrderNumber.getText());
+        System.out.println(shippingPage.item_list_order_report);
+        assertEquals(shippingPage.item_list_before_checkout, shippingPage.item_list_order_report);
     }
 
 //    @Test

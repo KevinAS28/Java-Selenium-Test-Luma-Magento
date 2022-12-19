@@ -46,6 +46,7 @@ public class CartPage extends CommonPage{
         WebElement removeButton = Util.waitElement(driver, cartItemElement.findElement(new By.ByClassName("action-delete")));//new By.ByXPath("//a[contains(@title,'Remove item')]")));
         removeButton.click();
     }
+
     public List<WebElement> getProductElementsInCart(){
         WebElement cartTableElement = Util.waitElement(driver, new By.ById("shopping-cart-table"));
         Util.waitElement(driver, cartTableElement);

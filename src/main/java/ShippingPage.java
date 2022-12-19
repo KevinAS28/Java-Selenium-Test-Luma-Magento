@@ -7,11 +7,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 
 public class ShippingPage extends CommonPage{
     public final String SHIPPING_PAGE_URL = "https://magento.softwaretestingboard.com/checkout/#shipping";
 
     public static String shipping_address_checkout;
+    public static HashMap<String, String> item_list_before_checkout = new HashMap<String, String>();
+    public static HashMap<String, String> item_list_order_report = new HashMap<String, String>();
     public static String order_number;
 
     public ShippingPage(WebDriver driver) {
@@ -90,6 +94,23 @@ public class ShippingPage extends CommonPage{
         nextButton();
     }
 
+    public void getOrderItem(){
+        WebElement ol = driver.findElement(new By.ByXPath("//*[@id=\"opc-sidebar\"]/div[1]/div/div[2]/div/ol"));
+        List<WebElement> li = ol.findElements(new By.ByTagName("li"));
+        WebElement dropdownList = driver.findElement(new By.ByXPath("//*[@id=\"opc-sidebar\"]/div[1]/div/div[1]"));
+        dropdownList.click();
+        Integer i = 1;
+        for (WebElement row : li) {
+            WebElement wait1 = Util.waitElement(driver, new By.ByXPath("//*[@id=\"opc-sidebar\"]/div[1]/div/div[2]/div/ol/li["+i+"]/div/div/div/div[1]/strong"));
+            WebElement itemName = row.findElement(new By.ByXPath("//*[@id=\"opc-sidebar\"]/div[1]/div/div[2]/div/ol/li["+i+"]/div/div/div/div[1]/strong"));
+            WebElement itemPrice = row.findElement(new By.ByXPath("//*[@id=\"opc-sidebar\"]/div[1]/div/div[2]/div/ol/li["+i+"]/div/div/div/div[2]"));
+            String productName = itemName.getText();
+            String productPrice = itemPrice.getText();
+            item_list_before_checkout.put(productName, productPrice);
+            i++;
+        }
+    }
+
     public void nextButton(){
         try{Thread.sleep(5000);}catch(InterruptedException e1){System.out.println(e1);}
         WebElement nextButtonElement1 = Util.waitElement(driver, new By.ById("shipping-method-buttons-container"));
@@ -113,9 +134,26 @@ public class ShippingPage extends CommonPage{
     public void getOrderNumber(){
         try{
             WebElement orderNumberElement = Util.waitElement(driver, new By.ByXPath(String.format("//*[@id=\"maincontent\"]/div[3]/div/div[2]/p[1]/a/strong")));
+            WebElement orderLinkElement = Util.waitElement(driver, new By.ByXPath(String.format("//*[@id=\"maincontent\"]/div[3]/div/div[2]/p[1]/a")));
             String orderNumber = orderNumberElement.getText();
+            String orderLink = orderLinkElement.getAttribute("href");
             order_number = orderNumber;
-            System.out.println("Order Number: " + orderNumber);
+            driver.get(orderLink);
+            WebElement table = driver.findElement(new By.ByXPath("//*[@id=\"my-orders-table\"]"));
+            List<WebElement> allProductElements = table.findElements(new By.ByTagName("tbody"));
+//            get element each row
+            for (WebElement row : allProductElements) {
+                WebElement tr = row.findElement(new By.ByTagName("tr"));
+                List<WebElement> td = tr.findElements(new By.ByTagName("td"));
+                WebElement productNameElement = td.get(0).findElement(new By.ByTagName("strong"));
+                WebElement productPriceElement = td.get(4).findElement(new By.ByClassName("price"));
+                String productName = productNameElement.getText();
+                String productPrice = productPriceElement.getText();
+                System.out.println("----"+productName+"----"+productPrice);
+                item_list_order_report.put(productName, productPrice);
+            }
+
+            System.out.println("NUMBER OF ROWS IN THIS TABLE = "+allProductElements.size());
         } catch (Exception e){}
     }
 

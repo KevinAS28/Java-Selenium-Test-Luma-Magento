@@ -60,4 +60,21 @@ public class Util {
         return waitDriver.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public boolean retryingFindClick(WebDriver driver, By by, int maxAttempt) {
+        boolean result = false;
+        int attempts = 0;
+        while(attempts < maxAttempt) {
+            try {
+                WebDriverWait wait0 = new WebDriverWait(driver, Duration.ofSeconds(10));
+                WebElement element = wait0.until(ExpectedConditions.elementToBeClickable(by));
+
+                result = true;
+                break;
+            } catch(Exception e) {
+            }
+            attempts++;
+        }
+        return result;
+    }
+
 }
